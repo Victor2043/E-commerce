@@ -23,8 +23,7 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
       const orderData = {
         line_items: checkoutToken.live.line_items,
         customer: { firstname: shippingData.firstName, lastname: shippingData.lastName, email: shippingData.email },
-        shipping: { name: 'International', street: shippingData.address1, town_city: shippingData.city, county_state: shippingData.shippingSubdivision, postal_zip_code: shippingData.zip, country: shippingData.shippingCountry },
-        fulfillment: { shipping_method: shippingData.shippingOption },
+        shipping: { name: 'International', street: shippingData.address1, postal_zip_code: shippingData.zip},
         payment: {
           gateway: 'stripe',
           stripe: {
@@ -50,9 +49,9 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
             <CardElement />
             <br /> <br />
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Button variant="outlined" onClick={backStep}>Back</Button>
+              <Button variant="outlined" onClick={backStep}>Voltar</Button>
               <Button type="submit" variant="contained" disabled={!stripe} color="primary">
-                Pay {checkoutToken.live.subtotal.formatted_with_symbol}
+                 {checkoutToken.live.subtotal.formatted_with_symbol}
               </Button>
             </div>
           </form>

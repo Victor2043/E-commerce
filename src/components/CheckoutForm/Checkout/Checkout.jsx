@@ -37,7 +37,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
 
   const test = (data) => {
     setShippingData(data);
-
+    
     nextStep();
   };
 
@@ -46,7 +46,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
       <div>
         <Typography variant="h5">Obrigado pela sua compra :), {order.customer.firstname} {order.customer.lastname}!</Typography>
         <Divider className={classes.divider} />
-        <Typography variant="subtitle2">Order ref: {order.customer_reference}</Typography>
+        <Typography variant="subtitle2">Numero do pedido : {order.customer_reference}</Typography>
       </div>
       <br />
       <Button component={Link} variant="outlined" type="button" to="/">Voltar as compras</Button>
