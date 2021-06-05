@@ -42,7 +42,7 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
     <>
       <Review checkoutToken={checkoutToken} />
       <Divider />
-      <Typography variant="h6" gutterBottom style={{ margin: '20px 0' }}>Payment method</Typography>
+      <Typography variant="h6" gutterBottom style={{ margin: '20px 0' }}>Método de Pagamento</Typography>
       <Elements stripe={stripePromise}>
         <ElementsConsumer>{({ elements, stripe }) => (
           <form onSubmit={(e) => handleSubmit(e, elements, stripe)}>
@@ -51,7 +51,8 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <Button variant="outlined" onClick={backStep}>Voltar</Button>
               <Button type="submit" variant="contained" disabled={!stripe} color="primary">
-                 {checkoutToken.live.subtotal.formatted_with_symbol}
+                 {/* {checkoutToken.live.subtotal.formatted_with_symbol} */}
+                Confirmar pagamento
               </Button>
             </div>
           </form>
