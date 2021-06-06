@@ -1,7 +1,9 @@
 import React from 'react';
-import { Typography, Button, Divider } from '@material-ui/core';
+import { Typography, Button, Divider, Card} from '@material-ui/core';
 import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 
 import Review from './Review';
 
@@ -23,7 +25,8 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
       const orderData = {
         line_items: checkoutToken.live.line_items,
         customer: { firstname: shippingData.firstName, lastname: shippingData.lastName, email: shippingData.email },
-        shipping: { name: 'International', street: shippingData.address1, postal_zip_code: shippingData.zip},
+        shipping: { name: 'International', town_city : "São Paulo", street: shippingData.address1, postal_zip_code: shippingData.zip, country: "Brazil"},
+        fulfillment: { shipping_method: "BR" },
         payment: {
           gateway: 'stripe',
           stripe: {
@@ -37,6 +40,11 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
       nextStep();
     }
   };
+
+  const cardNumberTest = "4242 4242 4242 4242"
+  const cardMMAATest = "04 / 24"
+  const cardCVC = "242"
+  const cardCEP = "42424"
 
   return (
     <>
@@ -58,7 +66,34 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
           </form>
         )}
         </ElementsConsumer>
-      </Elements>
+      </Elements><br/>
+      <Card>
+          <Typography variant='h6'>Exemplo de dados do Cartão</Typography>
+          <div style={{ display: 'flex' }}>
+            <Typography variant='h6'>4242 4242 4242 4242</Typography>
+            <CopyToClipboard text={cardNumberTest}>
+              <button style={{ margin: '3px', background: "white" }}><FileCopyIcon/></button>
+            </CopyToClipboard>
+          </div>
+          <div style={{ display: 'flex' }}>
+            <Typography variant='h6'>04 / 24</Typography>
+            <CopyToClipboard text={cardMMAATest}>
+              <button style={{ margin: '3px', background: "white" }}><FileCopyIcon/></button>
+            </CopyToClipboard>
+          </div>
+          <div style={{ display: 'flex' }}>
+            <Typography variant='h6'>242</Typography>
+            <CopyToClipboard text={cardCVC}>
+              <button style={{ margin: '3px', background: "white"}}><FileCopyIcon/></button>
+            </CopyToClipboard>
+          </div>
+          <div style={{ display: 'flex' }}>
+            <Typography variant='h6'>42424</Typography>
+            <CopyToClipboard text={cardCEP}>
+              <button style={{ margin: '3px', background: "white"}}><FileCopyIcon/></button>
+            </CopyToClipboard>
+          </div>
+      </Card>
     </>
   );
 };
