@@ -46,6 +46,9 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
       <div>
         <Typography variant="h5">Obrigado pela sua compra :), {order.customer.firstname} {order.customer.lastname}!</Typography>
         <Divider className={classes.divider} />
+        <Typography variant="subtitle2">Endereço : {order.shipping.street}</Typography>
+        <Typography variant="subtitle2">CEP : {order.shipping.postal_zip_code}</Typography>
+        <Typography variant="subtitle2">Cidade : {order.shipping.town_city}</Typography>
         <Typography variant="subtitle2">Numero do pedido : {order.customer_reference}</Typography>
       </div>
       <br />
@@ -70,6 +73,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
   const Form = () => (activeStep === 0
     ? <AddressForm checkoutToken={checkoutToken} nextStep={nextStep} setShippingData={setShippingData} test={test} />
     : <PaymentForm checkoutToken={checkoutToken} nextStep={nextStep} backStep={backStep} shippingData={shippingData} onCaptureCheckout={onCaptureCheckout} />);
+
 
   return (
     <>
