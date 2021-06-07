@@ -25,8 +25,8 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
       const orderData = {
         line_items: checkoutToken.live.line_items,
         customer: { firstname: shippingData.firstName, lastname: shippingData.lastName, email: shippingData.email },
-        shipping: { name: 'International', town_city : "São Paulo", street: shippingData.address1, postal_zip_code: shippingData.zip, country: "Brazil"},
-        fulfillment: { shipping_method: "BR" },
+        shipping: { name: 'international', country: 'BR', street: shippingData.address1, town_city: shippingData.city, county_state: shippingData.shippingSubdivision, postal_zip_code: shippingData.zip },
+        fulfillment: { shipping_method: "international" },
         payment: {
           gateway: 'stripe',
           stripe: {
